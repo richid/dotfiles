@@ -1,27 +1,41 @@
 " ----------------------------------------------------------------------------
-"  Vundle configuration
+"  Vundle configuration (installs automatically)
+"  Credit: http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 " ----------------------------------------------------------------------------
+
 set nocompatible               " be iMproved
 filetype off                   " required!
+
+" Setting up Vundle - the vim plugin bundler
+let vundle_installed=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let vundle_installed=0
+endif
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required!
+" Let Vundle manage Vundle, required
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
-" original repos on github
+" Add your bundles here
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'git://repo.or.cz/vcscommand'
 
+if vundle_installed == 0
+    echo "Installing Bundles, please ignore key map error messages..."
+    echo ""
+    :BundleInstall
+endif
+
 filetype plugin indent on     " required!
 
-syntax on
-set backupdir=~/.vim/tmp,.
-set directory=~/.vim/tmp,.
 
 " ----------------------------------------------------------------------------
 "  Text Formatting
@@ -78,6 +92,9 @@ match Cursor /\%#/
 
 colorscheme solarized
 
+" Fancy powerline (statusline) symbols
+let g:Powerline_symbols = 'fancy'
+
 " ----------------------------------------------------------------------------
 "  Visual Cues
 " ----------------------------------------------------------------------------
@@ -98,6 +115,10 @@ match Error /\s\+$/
 " ---------------------------------------------------------------------------
 "  Misc.
 " ---------------------------------------------------------------------------
+
+syntax on
+set backupdir=~/.vim/tmp,.
+set directory=~/.vim/tmp,.
 
 " Strip all trailing whitespace in file
 nmap <silent> clw :%s/\s\+$<CR><ESC>
