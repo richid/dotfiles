@@ -6,7 +6,7 @@ Dotfiles heavily geared towards Linux, bash, git, and vim.
 
 ## install
 
-- `git clone git://github.com/holman/dotfiles ~/.dotfiles`
+- `git clone git://github.com/richid/dotfiles ~/.dotfiles`
 - `cd ~/.dotfiles`
 - `rake install`
 
