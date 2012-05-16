@@ -17,7 +17,9 @@ though.
 The main file you'll want to change right off the bat is `bash/bash_profile.symlink`,
 which sets up a few paths that'll be different on your particular machine.
 
-The .vimrc is set up to automatically install vundle and the pre-configured bundles the first time it runs. Check out `vim/vimrc.symlink` and customize the bundles there.
+The `.vimrc` is set up to automatically install vundle and the pre-configured bundles
+the first time you fire up Vim. Check out `vim/vimrc.symlink` and customize your
+bundles there.
 
 ## topical
 
