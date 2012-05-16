@@ -1,0 +1,21 @@
+# shortcut to this dotfiles path is $BSH
+export BSH=$HOME/.dotfiles
+
+# source every .bsh file in this rep
+for config_file in $BSH/**/*.bsh
+do
+    source $config_file
+done
+
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
+
+# load every completion after autocomplete loads
+for config_file in $BSH/**/completion.sh
+do
+    source $config_file
+done

@@ -1,6 +1,8 @@
 .DS_Store
 .svn
-.tissues
 *~
-*.swp
+*.py[co]
+.*.sw[po]
+*.egg-info
+*.egg*
 *.rbc

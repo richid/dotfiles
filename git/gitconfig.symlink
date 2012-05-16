@@ -1,0 +1,35 @@
+[user]
+    name = Rich Schumacher
+    email = rich.schu@gmail.com
+[color]
+    ui = auto
+    diff = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    whitespace = red reverse
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    digg = diff
+    lg = log -p
+    cp = cherry-pick
+    rb = rebase
+    ru = remote update
+    lgs = log --summary
+    lgn = log --summary --stat
+    lgl = log --oneline
+[core]
+    excludesfile = ~/.gitignore
+    editor = vim
+[merge]
+    tool = vimdiff
