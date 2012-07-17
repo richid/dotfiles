@@ -120,6 +120,9 @@ syntax on
 set backupdir=~/.vim/tmp,.
 set directory=~/.vim/tmp,.
 
+" Jump to last cursor position when reopening files
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " Strip all trailing whitespace in file
 nmap <silent> clw :%s/\s\+$<CR><ESC>
 
