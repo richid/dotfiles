@@ -23,8 +23,9 @@
     digg = diff
     lg = log -p
     cp = cherry-pick
-    rb = rebase
+    rb = rebase -i
     ru = remote update
+    up = pull --rebase
     lgs = log --summary
     lgn = log --summary --stat
     lgl = log --oneline
