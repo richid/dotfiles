@@ -24,6 +24,7 @@
     lg = log -p
     cp = cherry-pick
     rb = rebase -i
+    rs = reset
     ru = remote update
     up = pull --rebase
     lgs = log --summary
