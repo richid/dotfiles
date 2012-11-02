@@ -128,7 +128,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 nmap <silent> clw :%s/\s\+$<CR><ESC>
 
 " Execute file being edited with <Shift> + e:
-map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
+map <buffer> <S-e> :w<CR>:!/usr/bin/env python %:p <CR>
 
 " Copy the current visual selection to ~/.vbuf
 vmap <C-c> :w! ~/.vbuf<CR>
