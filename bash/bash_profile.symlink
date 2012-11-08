@@ -1,6 +1,9 @@
 # shortcut to this dotfiles path is $BSH
 export BSH=$HOME/.dotfiles
 
+# Add timestamps to `history` output
+export HISTTIMEFORMAT='%F %T '
+
 # source every .bsh file in this rep
 for config_file in $BSH/**/*.bsh
 do
