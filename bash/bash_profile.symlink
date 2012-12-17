@@ -4,6 +4,9 @@ export BSH=$HOME/.dotfiles
 # Add timestamps to `history` output
 export HISTTIMEFORMAT='%F %T '
 
+# Feed Maven with a large amount of RAM
+export MAVEN_OPTS="-Xmx1024M -Xms1024M -XX:PermSize=256M -XX:MaxPermSize=256M"
+
 # source every .bsh file in this rep
 for config_file in $BSH/**/*.bsh
 do
