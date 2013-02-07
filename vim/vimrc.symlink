@@ -140,3 +140,6 @@ nmap <C-c> :.w! ~/.vbuf<CR>
 
 "" Paste the contents of the buffer file
 nmap <C-v> :r ~/.vbuf<CR>
+
+"" Force cursor position to beginning of first line in git commit messages
+au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
