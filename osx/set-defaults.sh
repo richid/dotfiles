@@ -19,5 +19,8 @@ defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 # Display hidden files in Finder.
 defaults write com.apple.Finder AppleShowAllFiles TRUE
 
+# Disable iCloud as the default save location
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
 # Show the ~/Library folder
 chflags nohidden ~/Library
