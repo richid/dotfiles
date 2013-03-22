@@ -7,8 +7,10 @@ then
 fi
 
 # Open a pull request against development for the current branch
+# and copy the pull request URL into the clipboard.
 pull() {
-    hub pull-request -b storably:development -h richid:$(git rev-parse --abbrev-ref HEAD)
+    echo $(hub pull-request -b storably:development -h richid:$(git rev-parse --abbrev-ref HEAD)) | pbcopy
+    pbpaste
 }
 
 # The rest of my fun git aliases

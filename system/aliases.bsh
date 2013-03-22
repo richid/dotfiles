@@ -1,2 +1,2 @@
 alias rsc='reset && clear'
-alias ss='java -jar scalastyle-batch_2.9.2-0.2.0/scalastyle-batch_2.9.2.jar --config scalastyle_config.xml'
+alias ss='java -jar ~/.m2/repository/org/scalastyle/scalastyle-batch/2.9.2-0.2.0/scalastyle-batch-2.9.2-0.2.0.jar --config scalastyle_config.xml'
