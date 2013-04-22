@@ -30,6 +30,7 @@ Bundle 'git://repo.or.cz/vcscommand'
 Bundle 'git://github.com/mitechie/pyflakes-pathogen.git'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'groenewege/vim-less'
+Bundle 'vim-scripts/VimClojure'
 
 if vundle_installed == 0
     echo "Installing Bundles, please ignore key map error messages..."
