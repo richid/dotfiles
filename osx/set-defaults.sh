@@ -24,3 +24,6 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
+
+# Show all network volumes, allows networked time-machine backups
+defaults write com.apple.systempreferences TMShowUnsupportedNetworkVolumes 1
