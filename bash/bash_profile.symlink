@@ -5,7 +5,7 @@ export BSH=$HOME/.dotfiles
 export HISTTIMEFORMAT='%F %T '
 
 # Feed Maven with a large amount of RAM
-export MAVEN_OPTS="-Xmx1024M -Xms1024M -XX:PermSize=256M -XX:MaxPermSize=256M"
+export MAVEN_OPTS="-Xmx1024M -Xms1024M -XX:PermSize=256M -XX:MaxPermSize=256M -Djava.awt.headless=true"
 
 # source every .bsh file in this rep
 for config_file in $BSH/**/*.bsh

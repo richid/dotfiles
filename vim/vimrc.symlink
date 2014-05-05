@@ -31,6 +31,8 @@ Bundle 'git://github.com/mitechie/pyflakes-pathogen.git'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/VimClojure'
+Bundle 'git://github.com/suan/vim-instant-markdown.git'
+Bundle 'git://github.com/elzr/vim-json'
 
 if vundle_installed == 0
     echo "Installing Bundles, please ignore key map error messages..."
@@ -141,6 +143,8 @@ nmap <C-c> :.w! ~/.vbuf<CR>
 
 "" Paste the contents of the buffer file
 nmap <C-v> :r ~/.vbuf<CR>
+
+nmap <silent> mkd :call InstantMarkdownPreview()<CR>
 
 "" Force cursor position to beginning of first line in git commit messages
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
