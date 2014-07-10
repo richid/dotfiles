@@ -1,2 +1,14 @@
 alias rsc='reset && clear'
 alias ss='java -jar ~/.m2/repository/org/scalastyle/scalastyle-batch/2.9.2-0.2.0/scalastyle-batch-2.9.2-0.2.0.jar --config scalastyle_config.xml'
+
+convertbytes() {
+    if [ $1 -lt 1024 ]; then
+        echo -e "$1 bytes -> $1 bytes"
+    elif [ $1 -lt 1048576 ]; then
+        echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1024 \nquit" | bc) KiB"
+    elif [ $1 -lt 1073741824 ]; then
+        echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1048576 \nquit" | bc) MiB"
+    else
+        echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1073741824 \nquit" | bc) GiB"
+    fi
+}
