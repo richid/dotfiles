@@ -2,10 +2,13 @@
 export BSH=$HOME/.dotfiles
 
 # Add timestamps to `history` output
-export HISTTIMEFORMAT='%F %T '
+export HISTTIMEFORMAT="%F %T "
+
+# Use separate history file for each terminal
+export HISTFILE="$HOME/.bash_history_$(tty | sed -e  's:/dev/::')"
 
 # Feed Maven with a large amount of RAM
-export MAVEN_OPTS="-Xmx1024M -Xms1024M -XX:PermSize=256M -XX:MaxPermSize=256M -Djava.awt.headless=true"
+export MAVEN_OPTS="-client -Xmx1024M -Xms1024M -XX:PermSize=256M -XX:MaxPermSize=256M -Djava.awt.headless=true"
 
 # source every .bsh file in this rep
 for config_file in $BSH/**/*.bsh
