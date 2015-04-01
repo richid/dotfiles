@@ -21,6 +21,7 @@
     co = checkout
     df = diff
     digg = diff
+    sb = show-branch --list
     lg = log -p
     cp = cherry-pick
     rb = rebase -i

@@ -8,7 +8,7 @@ export HISTTIMEFORMAT="%F %T "
 export HISTFILE="$HOME/.bash_history_$(tty | sed -e  's:/dev/::')"
 
 # Feed Maven with a large amount of RAM
-export MAVEN_OPTS="-client -Xmx1024M -Xms1024M -XX:PermSize=256M -XX:MaxPermSize=256M -Djava.awt.headless=true"
+export MAVEN_OPTS="-client -Xms1G -Xmx1G -XX:PermSize=256M -XX:MaxPermSize=256M -Djava.awt.headless=true"
 
 # source every .bsh file in this rep
 for config_file in $BSH/**/*.bsh
@@ -28,3 +28,6 @@ for config_file in $BSH/**/completion.sh
 do
     source $config_file
 done
+
+export NVM_DIR="/Users/rich/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
