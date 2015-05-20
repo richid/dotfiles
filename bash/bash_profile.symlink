@@ -10,6 +10,9 @@ export HISTFILE="$HOME/.bash_history_$(tty | sed -e  's:/dev/::')"
 # Feed Maven with a large amount of RAM
 export MAVEN_OPTS="-client -Xms1G -Xmx1G -XX:PermSize=256M -XX:MaxPermSize=256M -Djava.awt.headless=true"
 
+# Set default JAVA_OPTS
+export JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8"
+
 # source every .bsh file in this rep
 for config_file in $BSH/**/*.bsh
 do
