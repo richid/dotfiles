@@ -8,7 +8,9 @@ convertbytes() {
         echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1024 \nquit" | bc) KiB"
     elif [ $1 -lt 1073741824 ]; then
         echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1048576 \nquit" | bc) MiB"
-    else
+    elif [ $1 -lt 1099511627776 ]; then
         echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1073741824 \nquit" | bc) GiB"
+    else
+        echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1099511627776 \nquit" | bc) TiB"
     fi
 }
