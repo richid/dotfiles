@@ -6,14 +6,20 @@ then
   alias git=$hub_path
 fi
 
-# Open a pull request against development for the current branch
-# and copy the pull request URL into the clipboard.
+# Open a pull request for the current branch against the tracked
+# upstream branch. A browser window is then opened pointed at the
+# freshly opened PR. Assumes that your fork is called "origin" and
+# that you've already pushed the local branch to origin with the
+# same name.
 pull() {
-    echo $(hub pull-request -b storably:development -h richid:$(git rev-parse --abbrev-ref HEAD)) | pbcopy
-    pbpaste
+    UPSTREAM="$(git br -lvv | grep $(git rev-parse --abbrev-ref HEAD) | awk -F[/:] '{print $2}')"
+    CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+    ORIGIN="$(git remote show origin | grep github -m 1 | awk -F[:/] '{print $3}')"
+    hub pull-request -b curalate:$UPSTREAM -h $ORIGIN:$CURRENT_BRANCH -o
 }
 
 # The rest of my fun git aliases
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gitsha="git rev-parse --short HEAD"
+alias grup="git ru && git up"
