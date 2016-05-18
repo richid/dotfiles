@@ -1,6 +1,9 @@
 # shortcut to this dotfiles path is $BSH
 export BSH=$HOME/.dotfiles
 
+# Save last 10k Bash commands
+export HISTFILESIZE=10000
+
 # Add timestamps to `history` output
 export HISTTIMEFORMAT="%F %T "
 
