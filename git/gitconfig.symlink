@@ -36,3 +36,5 @@
     editor = vim
 [merge]
     tool = vimdiff
+[diff]
+    compactionHeuristic = true

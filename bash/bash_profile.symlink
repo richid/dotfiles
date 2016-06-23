@@ -37,4 +37,4 @@ done
 
 export NVM_DIR="/Users/rich/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use 0.10.3 > /dev/null 2>&1
+nvm use 0.12.14 > /dev/null 2>&1
