@@ -2,15 +2,16 @@ alias rsc='reset && clear'
 alias ss='java -jar ~/.m2/repository/org/scalastyle/scalastyle-batch/2.9.2-0.2.0/scalastyle-batch-2.9.2-0.2.0.jar --config scalastyle_config.xml'
 
 convertbytes() {
-    if [ $1 -lt 1024 ]; then
-        echo -e "$1 bytes -> $1 bytes"
-    elif [ $1 -lt 1048576 ]; then
-        echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1024 \nquit" | bc) KiB"
-    elif [ $1 -lt 1073741824 ]; then
-        echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1048576 \nquit" | bc) MiB"
-    elif [ $1 -lt 1099511627776 ]; then
-        echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1073741824 \nquit" | bc) GiB"
+    IN="$(echo $1 | tr -d ,)"
+    if [ $IN -lt 1024 ]; then
+        echo -e "$IN bytes -> $IN bytes"
+    elif [ $IN -lt 1048576 ]; then
+        echo -e "$IN bytes -> $(echo -e "scale=3 \n$IN/1024 \nquit" | bc) KiB"
+    elif [ $IN -lt 1073741824 ]; then
+        echo -e "$IN bytes -> $(echo -e "scale=3 \n$IN/1048576 \nquit" | bc) MiB"
+    elif [ $IN -lt 1099511627776 ]; then
+        echo -e "$IN bytes -> $(echo -e "scale=3 \n$IN/1073741824 \nquit" | bc) GiB"
     else
-        echo -e "$1 bytes -> $(echo -e "scale=3 \n$1/1099511627776 \nquit" | bc) TiB"
+        echo -e "$IN bytes -> $(echo -e "scale=3 \n$IN/1099511627776 \nquit" | bc) TiB"
     fi
 }

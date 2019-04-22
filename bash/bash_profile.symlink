@@ -11,7 +11,7 @@ export HISTTIMEFORMAT="%F %T "
 export HISTFILE="$HOME/.bash_history_$(tty | sed -e  's:/dev/::')"
 
 # Feed Maven with a large amount of RAM
-export MAVEN_OPTS="-client -Xms1G -Xmx1G -XX:PermSize=256M -XX:MaxPermSize=256M -Djava.awt.headless=true -Dorg.slf4j.simpleLogger.showDateTime=true"
+export MAVEN_OPTS="-client -Xms1G -Xmx2G -Djava.awt.headless=true -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss,SSS"
 
 # Set default JAVA_OPTS
 export JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8"
@@ -22,19 +22,24 @@ do
     source $config_file
 done
 
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-if [[ -a ~/.localrc ]]
-then
-  source ~/.localrc
-fi
-
 # load every completion after autocomplete loads
 for config_file in $BSH/**/completion.sh
 do
     source $config_file
 done
 
-export NVM_DIR="/Users/rich/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use 0.12.14 > /dev/null 2>&1
+if which rbenv > /dev/null; then
+    eval "$(rbenv init -)";
+fi
+
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+if [[ -a ~/.localrc ]]; then
+  source ~/.localrc
+fi

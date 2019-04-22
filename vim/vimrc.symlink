@@ -27,12 +27,13 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'git://repo.or.cz/vcscommand'
-Bundle 'git://github.com/mitechie/pyflakes-pathogen.git'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/VimClojure'
-Bundle 'git://github.com/suan/vim-instant-markdown.git'
 Bundle 'git://github.com/elzr/vim-json'
+Bundle 'git://github.com/hashivim/vim-terraform'
+Bundle 'https://github.com/godlygeek/tabular'
+Bundle 'https://github.com/w0rp/ale.git'
 
 if vundle_installed == 0
     echo "Installing Bundles, please ignore key map error messages..."
@@ -58,6 +59,8 @@ set expandtab              " expand tabs to spaces
 set nosmarttab             " fuck tabs
 set formatoptions+=n       " support for numbered/bullet lists
 set virtualedit=block      " allow virtual edit in visual block ..
+
+autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
 
 
 " ----------------------------------------------------------------------------
@@ -101,6 +104,9 @@ colorscheme solarized
 " Fancy powerline (statusline) symbols
 let g:Powerline_symbols = 'fancy'
 
+" Disable automatic hiding of double quotes in JSON
+let g:vim_json_syntax_conceal = 0
+
 " ----------------------------------------------------------------------------
 "  Visual Cues
 " ----------------------------------------------------------------------------
@@ -123,6 +129,7 @@ match Error /\s\+$/
 " ---------------------------------------------------------------------------
 
 syntax on
+set tabpagemax=100
 set backupdir=~/.vim/tmp,.
 set directory=~/.vim/tmp,.
 
@@ -141,10 +148,14 @@ vmap <C-c> :w! ~/.vbuf<CR>
 " Copy the current line to the buffer file if no visual selection
 nmap <C-c> :.w! ~/.vbuf<CR>
 
-"" Paste the contents of the buffer file
+" Paste the contents of the buffer file
 nmap <C-v> :r ~/.vbuf<CR>
 
 nmap <silent> mkd :call InstantMarkdownPreview()<CR>
 
-"" Force cursor position to beginning of first line in git commit messages
+" Force cursor position to beginning of first line in git commit messages
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
+" Enable spellcheck for certain file types
+au FileType gitcommit setlocal spell
+au FileType markdown setlocal spell

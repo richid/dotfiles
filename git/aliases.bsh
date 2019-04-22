@@ -15,12 +15,30 @@ pull() {
     UPSTREAM="$(git br -lvv | grep $(git rev-parse --abbrev-ref HEAD) | awk -F[/:] '{print $2}')"
     CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
     ORIGIN="$(git remote show origin | grep github -m 1 | awk -F[:/] '{print $3}')"
-    hub pull-request -b curalate:$UPSTREAM -h $ORIGIN:$CURRENT_BRANCH -o
+
+    if [ -f .github/PULL_REQUEST_TEMPLATE.md ]; then
+        hub pull-request -b curalate:$UPSTREAM -h $ORIGIN:$CURRENT_BRANCH -o -e -F .github/PULL_REQUEST_TEMPLATE.md
+    else
+        hub pull-request -b curalate:$UPSTREAM -h $ORIGIN:$CURRENT_BRANCH -o
+    fi
 }
 
 # The rest of my fun git aliases
+alias gci="git ci --amend --no-edit"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gitsha="git rev-parse --short HEAD"
 alias grup="git ru && git up"
 alias gconflicts='vim -p $(git status -sb | grep UU | cut -d" " -f2)'
+
+gp() {
+    git push $@
+}
+
+gpf() {
+    git push --force-with-lease $@
+}
+
+grp() {
+    git remote prune $@
+}

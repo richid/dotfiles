@@ -1,6 +1,13 @@
 [user]
     name = Rich Schumacher
-    email = rich.schu@gmail.com
+    email = rich@curalate.com
+[github]
+    user = richid
+[help]
+	autocorrect = 1
+[branch]
+    autosetupmerge = always
+    autosetuprebase = always
 [color]
     ui = auto
     diff = auto
@@ -15,23 +22,29 @@
     changed = yellow
     untracked = red
 [alias]
-    st = status -sb
-    ci = commit
     br = branch
+    ci = commit
+    cia  = commit --amend
+    cian = commit --amend --no-edit
     co = checkout
+    cp = cherry-pick
     df = diff
     digg = diff
-    sb = show-branch --list
+	fix = !vim -p $(git diff --name-only | uniq)
     lg = log -p
-    cp = cherry-pick
+    lgl = log --oneline
+    lgn = log --summary --stat
+    lgs = log --summary
     rb = rebase -i
+    rev = rev-parse --short HEAD
     rs = reset
     ru = remote update
-    up = pull --rebase
-    lgs = log --summary
-    lgn = log --summary --stat
-    lgl = log --oneline
+    sb = show-branch --list
+    st = status -sb
+    #up = pull --rebase
+    up = pull
 [core]
+    commentChar = %
     excludesfile = ~/.gitignore
     editor = vim
 [merge]
