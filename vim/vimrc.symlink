@@ -30,10 +30,9 @@ Bundle 'git://repo.or.cz/vcscommand'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/VimClojure'
-Bundle 'git://github.com/elzr/vim-json'
-Bundle 'git://github.com/hashivim/vim-terraform'
-Bundle 'https://github.com/godlygeek/tabular'
-Bundle 'https://github.com/w0rp/ale.git'
+Bundle 'elzr/vim-json'
+Bundle 'hashivim/vim-terraform'
+Bundle 'godlygeek/tabular'
 
 if vundle_installed == 0
     echo "Installing Bundles, please ignore key map error messages..."
@@ -79,6 +78,10 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
+" replace currently selected text with default register
+" without yanking it
+vnoremap <leader>p "_dP
+nnoremap <leader>p "_dP
 
 " ----------------------------------------------------------------------------
 "  UI
@@ -140,7 +143,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 nmap <silent> clw :%s/\s\+$<CR><ESC>
 
 " Execute file being edited with <Shift> + e:
-map <buffer> <S-e> :w<CR>:!/usr/bin/env python %:p <CR>
+"map <buffer> <S-e> :w<CR>:!/usr/bin/env python3 %:p <CR>
 
 " Copy the current visual selection to ~/.vbuf
 vmap <C-c> :w! ~/.vbuf<CR>

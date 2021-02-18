@@ -15,3 +15,15 @@ convertbytes() {
         echo -e "$IN bytes -> $(echo -e "scale=3 \n$IN/1099511627776 \nquit" | bc) TiB"
     fi
 }
+
+listening() {
+    if [ $# -eq 0 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P
+    elif [ $# -eq 1 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
+    else
+        echo "Usage: listening [pattern]"
+    fi
+}
+
+alias cb="convertbytes $1"

@@ -43,3 +43,5 @@ export NVM_DIR="$HOME/.nvm"
 if [[ -a ~/.localrc ]]; then
   source ~/.localrc
 fi
+
+export GOPATH="$HOME/go"
