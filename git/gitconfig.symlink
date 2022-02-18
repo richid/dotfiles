@@ -1,13 +1,15 @@
 [user]
     name = Rich Schumacher
-    email = rich@curalate.com
+    email = rich.schumacher@bazaarvoice.com
 [github]
     user = richid
 [help]
-	autocorrect = 1
+    autocorrect = 1
 [branch]
     autosetupmerge = always
     autosetuprebase = always
+[init]
+    defaultBranch = main
 [color]
     ui = auto
     diff = auto
@@ -30,7 +32,7 @@
     cp = cherry-pick
     df = diff
     digg = diff
-	fix = !vim -p $(git diff --name-only | uniq)
+    fix = !vim -p $(git diff --name-only | uniq)
     lg = log -p
     lgl = log --oneline
     lgn = log --summary --stat
@@ -41,7 +43,6 @@
     ru = remote update
     sb = show-branch --list
     st = status -sb
-    #up = pull --rebase
     up = pull
 [core]
     commentChar = %
