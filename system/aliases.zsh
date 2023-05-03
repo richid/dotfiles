@@ -1,6 +1,3 @@
-alias rsc='reset && clear'
-alias ss='java -jar ~/.m2/repository/org/scalastyle/scalastyle-batch/2.9.2-0.2.0/scalastyle-batch-2.9.2-0.2.0.jar --config scalastyle_config.xml'
-
 convertbytes() {
     IN="$(echo $1 | tr -d ,)"
     if [ $IN -lt 1024 ]; then
@@ -27,3 +24,15 @@ listening() {
 }
 
 alias cb="convertbytes $1"
+alias rsc='reset && clear'
+
+# grc overides for ls
+#   Made possible through contributions from generous benefactors like
+#   `brew install coreutils`
+if $(gls &>/dev/null)
+then
+  alias ls="gls -F --color"
+  alias l="gls -lAh --color"
+  alias ll="gls -l --color"
+  alias la='gls -A --color'
+fi

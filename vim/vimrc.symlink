@@ -24,7 +24,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Add your bundles here
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'git://repo.or.cz/vcscommand'
 Bundle 'derekwyatt/vim-scala'
@@ -32,8 +33,8 @@ Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/VimClojure'
 Bundle 'elzr/vim-json'
 Bundle 'hashivim/vim-terraform'
-Bundle 'godlygeek/tabular'
 Bundle 'jvirtanen/vim-hcl'
+Bundle 'godlygeek/tabular'
 
 if vundle_installed == 0
     echo "Installing Bundles, please ignore key map error messages..."
@@ -42,7 +43,6 @@ if vundle_installed == 0
 endif
 
 filetype plugin indent on     " required!
-
 
 " ----------------------------------------------------------------------------
 "  Text Formatting
@@ -97,16 +97,18 @@ set backspace=start,indent,eol
 set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]
-set background=dark
 
 highlight Cursor ctermbg=white ctermfg=red
 match Cursor /\%#/
 
+" Solarized
+set background=dark
 colorscheme solarized
 
-" Fancy powerline (statusline) symbols
-let g:Powerline_symbols = 'fancy'
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'bubblegum'
 
 " Disable automatic hiding of double quotes in JSON
 let g:vim_json_syntax_conceal = 0
