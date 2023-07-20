@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# gh-rotate
+#
+# `gh-rotate` rotates a GitHub auth token in macOS's keychain
+
+read -s -p "New token: " token
+echo
+
+echo "Erasing old token"
+echo "\
+host=github.com
+protocol=https" | git credential-osxkeychain erase
+
+echo "Setting new token"
+echo "\
+protocol=https
+host=github.com
+username=user
+password=$token" | git credential-osxkeychain store
+
+echo "✅ Done!"
