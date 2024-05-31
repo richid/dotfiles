@@ -1,0 +1,53 @@
+#compdef rotate-gh-pat
+
+function usage()
+{
+  cat <<EOF
+
+Usage: ${0#./} [OPTION]...
+
+Rotate GitHub Personal Access Token in macOS Keychain Access
+Options:
+  --token <token>
+      The new GitHub Personal Access Token
+EOF
+}
+
+function main() {
+  local token
+
+  while [[ ${#} -gt 0 ]]; do
+    case "${1}" in
+      --token)     token="${2}"; shift;;
+      -h|--help)   usage; exit 0;;
+      --)          break;;
+      -*)          echo "ERROR: Unrecognized option ${1}"; exit 1;;
+    esac
+
+    shift
+  done
+
+  if [[ -z "${token}" ]]; then
+    usage
+  else
+    rotate "${token}"
+  fi
+}
+
+function rotate() {
+    local token="$1"
+
+    echo "Erasing existing token..."
+    echo -e "host=github.com\nprotocol=https" | git credential-osxkeychain erase
+
+#    git credential-osxkeychain erase <<EOF
+#host=github.com
+#protocol=https
+#EOF
+
+    echo "Setting new token..."
+    echo -e "host=github.com\nprotocol=https\nusername=richid\npassword=${token}" | git credential-osxkeychain store
+    echo "✅"
+}
+
+main "${@:-}"
