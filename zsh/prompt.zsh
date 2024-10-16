@@ -1,80 +1,68 @@
 autoload colors && colors
-# cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
-if (( $+commands[git] ))
-then
-  git="$commands[git]"
+if (( $+commands[git] )); then
+    git="$commands[git]"
 else
-  git="/usr/bin/git"
+    git="/usr/bin/git"
 fi
 
 git_branch() {
-  echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
+    "$git" rev-parse --abbrev-ref HEAD
 }
 
-git_dirty() {
-  if $(! $git status -s &> /dev/null)
-  then
-    echo ""
-  else
-    if [[ $($git status --porcelain) == "" ]]
-    then
-      echo "on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
+is_dirty() {
+    if [ -n "$($git status --porcelain)" ]; then
+        return 0
     else
-      echo "on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}"
+        return 1
     fi
-  fi
 }
 
-git_prompt_info () {
- ref=$($git symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo "${ref#refs/heads/}"
-}
-
-# This assumes that you always have an origin named `origin`, and that you only
-# care about one specific origin. If this is not the case, you might want to use
-# `$git cherry -v @{upstream}` instead.
-need_push () {
-  if [ $($git rev-parse --is-inside-work-tree 2>/dev/null) ]
-  then
-    number=$($git cherry -v origin/$(git symbolic-ref --short HEAD) 2>/dev/null | wc -l | bc)
-
-    if [[ $number == 0 ]]
-    then
-      echo " "
+is_git_installed() {
+    if command -v git > /dev/null 2>&1; then
+        return 0
     else
-      echo " with %{$fg_bold[magenta]%}$number unpushed%{$reset_color%}"
+        return 1
     fi
-  fi
 }
 
-directory_name() {
-  echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
+is_git_repo() {
+    if "$git" rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+        return 0
+    else
+        return 1
+    fi
 }
 
-battery_status() {
-  if test ! "$(uname)" = "Darwin"
-  then
-    exit 0
-  fi
+configure_prompt() {
+    color="reset_color"
 
-  if [[ $(sysctl -n hw.model) == *"Book"* ]]
-  then
-    $ZSH/bin/battery-status
-  fi
+    if [[ $(id -u) -eq 0 ]]; then
+        color="red"
+    fi
+
+    echo "%b%F{blue}%~%F{$color} # "
 }
 
+configure_rprompt() {
+    color="reset_color"
 
-#export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
-export PROMPT='%F{blue}▶ %f'
+    is_git_installed || return
+    is_git_repo      || return
+    is_dirty         && color="red"
+
+    echo "%b%F{$color}$(git_branch)%F{reset_color}"
+}
 
 set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
+    PROMPT="$(configure_prompt)"
+    RPROMPT="$(configure_rprompt)"
+
+    export PROMPT
+    export RPROMPT
 }
 
 precmd() {
-  title "zsh" "%m" "%55<...<%~"
-  set_prompt
+    title "zsh" "%m" "%55<...<%~"
+    set_prompt
 }
