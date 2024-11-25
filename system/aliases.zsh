@@ -25,6 +25,7 @@ listening() {
 
 alias cb="convertbytes $1"
 alias rsc='reset && clear'
+alias bup="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup && brew doctor"
 
 # grc overides for ls
 #   Made possible through contributions from generous benefactors like
