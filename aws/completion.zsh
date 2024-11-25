@@ -6,3 +6,5 @@ then
 fi
 
 complete -C '$(which aws_completer)' aws
+
+fpath=(~/.awsume/zsh-autocomplete/ $fpath)
