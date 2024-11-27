@@ -34,6 +34,14 @@ is_git_repo() {
     fi
 }
 
+shpwd() {
+    if [ "$PWD" = "$HOME" ]; then
+        echo "~"
+    else
+        echo ${${:-/${(j:/:)${(M)${(s:/:)${(D)PWD:h}}#(|.)[^.]}}/${PWD:t}}//\/~/\~}
+    fi
+}
+
 configure_prompt() {
     color="reset_color"
 
@@ -41,7 +49,7 @@ configure_prompt() {
         color="red"
     fi
 
-    echo "%b%F{blue}%~%F{$color} # "
+    echo "%b%F{blue}% $(shpwd)%F{$color} # "
 }
 
 configure_rprompt() {
