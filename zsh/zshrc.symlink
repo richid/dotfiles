@@ -1,5 +1,12 @@
 export ZSH=$HOME/.dotfiles
 
+autoload bashcompinit
+bashcompinit
+
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
+
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.
@@ -24,13 +31,6 @@ do
   source $file >/dev/null
 done
 
-autoload bashcompinit
-bashcompinit
-
-# initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
-
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
 do
@@ -54,3 +54,5 @@ export NVM_DIR="$HOME/.nvm"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/rich.schumacher/.sdkman"
 [[ -s "/Users/rich.schumacher/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/rich.schumacher/.sdkman/bin/sdkman-init.sh"
+
+eval "$(direnv hook zsh)"

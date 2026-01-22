@@ -44,12 +44,17 @@ shpwd() {
 
 configure_prompt() {
     color="reset_color"
+    PIXI=""
+
+    if [ -v PIXI_PROJECT_NAME ]; then
+        PIXI="(pixi:${PIXI_PROJECT_NAME})"
+    fi
 
     if [[ $(id -u) -eq 0 ]]; then
         color="red"
     fi
 
-    echo "%b%F{blue}% $(shpwd)%F{$color} # "
+    echo "$PIXI %b%F{blue}% $(shpwd)%F{$color} # "
 }
 
 configure_rprompt() {
