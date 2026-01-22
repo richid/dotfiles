@@ -4,6 +4,7 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gitsha="git rev-parse --short HEAD"
 alias grup="git ru && git up"
+alias gpu="git push upstream"
 alias gconflicts='vim -p $(git status -sb | grep UU | cut -d" " -f2)'
 
 gp() {

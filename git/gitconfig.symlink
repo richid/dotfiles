@@ -4,15 +4,15 @@
 [github]
     user = richid
 [help]
-    autocorrect = 1
+    autocorrect = prompt
 [branch]
     autosetupmerge = always
     autosetuprebase = always
+    sort = -committerdate
 [init]
     defaultBranch = main
 [color]
     ui = auto
-    diff = auto
 [color "branch"]
     current = yellow reverse
     local = yellow
@@ -40,17 +40,31 @@
     rb = rebase -i
     rev = rev-parse --short HEAD
     rs = reset
+    rst = restore
     ru = remote update
     sb = show-branch --list
     st = status -sb
     up = pull
 [core]
+    autocrlf = false
+    eol = lf
     commentChar = %
     excludesfile = ~/.gitignore
     editor = vim
 [merge]
     tool = vimdiff
 [diff]
-    compactionHeuristic = true
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
+[column]
+    ui = auto
+[tag]
+    sort = version:refname
+[url "git@bitbucket.org:"]
+    insteadOf = https://bitbucket.org/
+[credential "https://dev.azure.com"]
+    useHttpPath = true
