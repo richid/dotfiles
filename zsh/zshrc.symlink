@@ -55,4 +55,6 @@ export NVM_DIR="$HOME/.nvm"
 export SDKMAN_DIR="/Users/rich.schumacher/.sdkman"
 [[ -s "/Users/rich.schumacher/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/rich.schumacher/.sdkman/bin/sdkman-init.sh"
 
-eval "$(direnv hook zsh)"
+if command -v direnv &> /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
