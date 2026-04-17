@@ -60,6 +60,7 @@
     renames = true
 [credential]
     helper = osxkeychain
+    helper = /usr/local/share/gcm-core/git-credential-manager
 [column]
     ui = auto
 [tag]
@@ -68,3 +69,7 @@
     insteadOf = https://bitbucket.org/
 [credential "https://dev.azure.com"]
     useHttpPath = true
+[clone]
+    defaultRemoteName = upstream
+[include]
+    path = ~/.gitconfig.local
